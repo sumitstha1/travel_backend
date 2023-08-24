@@ -10,7 +10,7 @@ class DestinationAPIView(APIView):
 
     def get_obj(self, slug):
         try:
-            return Destination.objects.prefetch_related("location", "city", "imgSrc").get(slug = slug)
+            return Destination.objects.prefetch_related("imgSrc").get(slug = slug)
         except Destination.DoesNotExist:
             return None
 
@@ -23,6 +23,6 @@ class DestinationAPIView(APIView):
             serializer = DestinationSerializer(destination_obj)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        destination_obj = Destination.objects.prefetch_related("location", "city", "imgSrc").all()
+        destination_obj = Destination.objects.prefetch_related("imgSrc").all()
         serializer = DestinationSerializer(destination_obj, many = True)
         return Response(serializer.data, status=status.HTTP_200_OK)
