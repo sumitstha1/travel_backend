@@ -5,7 +5,6 @@ from .serializers import *
 from rest_framework import status
 from rest_framework.response import Response
 
-# Create your views here.
 class DestinationAPIView(APIView):
 
     def get_obj(self, slug):
